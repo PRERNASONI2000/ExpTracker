@@ -16,6 +16,10 @@ connectDB();
 //data
 // const expenses = [];
 
+app.get('/', (req, res) => {
+  res.send('Backend is running');
+});
+
 //routes
 app.get('/api/expenses', async (req, res) => {
     try {
