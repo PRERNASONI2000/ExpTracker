@@ -3,6 +3,7 @@ const connectDB = require('./config/db');
 const express = require('express');
 const Expense = require('./models/Expense');
 const cors = require('cors');
+const PORT = process.env.PORT || 5000;
 // const crypto = require('crypto');
 
 
@@ -75,6 +76,6 @@ app.delete('/api/expenses/:id', async (req, res) => {
    
 
 //start the server
-app.listen(5000, () => {
-  console.log('Server is running on port 5000');
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 }); 
