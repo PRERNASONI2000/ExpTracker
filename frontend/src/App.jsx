@@ -31,7 +31,7 @@ useEffect(()=>{
   const fetchExpenses = async () => {
     try{
       const res = await axios.get(API_URL);
-      setExpenses(res.data);
+      setExpenses(Array.isArray(res.data) ? res.data : []);
     }
     catch(err){
       console.error('Error fetching expenses:', err);
