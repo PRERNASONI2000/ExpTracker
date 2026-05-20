@@ -16,12 +16,17 @@ const expenseSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-    },  
+    },
     createdAt: {
         type: Date,
         default: Date.now,
     },
-});
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    }
+}, { timestamps: true });
 
 const Expense = mongoose.model('Expense', expenseSchema);
 module.exports = Expense;
