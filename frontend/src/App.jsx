@@ -55,7 +55,9 @@ function App() {
     const fetchExpenses = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(API_URL,
+        const res = await axios.get(
+          // API_URL,
+          `${API_URL}/api/expenses`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -107,7 +109,8 @@ function App() {
       if (editingId) {
         const token = localStorage.getItem('token');
         const res = await axios.put(
-          `${API_URL}/${editingId}`,
+          // API_URL,
+          `${API_URL}/api/expenses/${editingId}`,
           {
             title,
             amount,
@@ -134,7 +137,8 @@ function App() {
       // CREATE
       const token = localStorage.getItem('token');
       const res = await axios.post(
-        API_URL,
+        // API_URL,
+        `${API_URL}/api/expenses`,
         {
           title,
           amount,
@@ -169,7 +173,9 @@ function App() {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`${API_URL}/${id}`,
+      await axios.delete(
+        // API_URL,
+        `${API_URL}/api/expenses/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -4,6 +4,8 @@ import axios from "axios";
 import { LogIn, X } from "lucide-react";
 import { createPortal } from "react-dom";
 
+const API_URL = import.meta.env.VITE_API_URL
+
 function Login({ trigger, isOpen: controlledIsOpen, onClose }) {
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({
@@ -27,7 +29,8 @@ function Login({ trigger, isOpen: controlledIsOpen, onClose }) {
 
         try {
             const res = await axios.post(
-                "http://localhost:5000/api/auth/login",
+                // "http://localhost:5000/api/auth/login",
+                `${API_URL}/api/auth/login`,
                 formData
             );
 

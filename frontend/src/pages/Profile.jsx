@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { User, X, Mail } from "lucide-react";
 import { createPortal } from "react-dom";
 
+const API_URL = import.meta.env.VITE_API_URL
+
 function Profile({ trigger, isOpen: controlledIsOpen, onClose }) {
     const [isOpen, setIsOpen] = useState(false);
     const [user, setUser] = useState(null);

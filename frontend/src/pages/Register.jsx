@@ -4,6 +4,8 @@ import axios from "axios";
 import { UserPlus, X } from "lucide-react";
 import { createPortal } from "react-dom";
 
+const API_URL = import.meta.env.VITE_API_URL
+
 function Register({ trigger, isOpen: controlledIsOpen, onClose }) {
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({
@@ -28,7 +30,8 @@ function Register({ trigger, isOpen: controlledIsOpen, onClose }) {
 
         try {
             const res = await axios.post(
-                "http://localhost:5000/api/auth/register",
+                // "http://localhost:5000/api/auth/register",
+                `${API_URL}/api/auth/register`,
                 formData
             );
             setMessage({ type: 'success', text: "User Registered Successfully!" });
