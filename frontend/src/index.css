@@ -1,13 +1,22 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-primary: #6366f1;
+  --color-brand-secondary: #06b6d4;
+  --color-brand-dark: #030712;
+  --color-brand-card: rgba(17, 24, 39, 0.6);
+  --color-brand-border: rgba(255, 255, 255, 0.08);
+}
+
 :root {
-  font-family: Inter, "Segoe UI", Roboto, system-ui, sans-serif;
-  color: #e5e7eb;
-  background-color: #020617;
+  font-family: 'Outfit', 'Inter', "Segoe UI", Roboto, system-ui, sans-serif;
+  color: #f3f4f6;
+  background-color: #030712;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 * {
@@ -17,8 +26,74 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(56, 189, 248, 0.2), transparent 30%),
-    radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.18), transparent 28%),
-    #020617;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.12), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(6, 182, 212, 0.12), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(139, 92, 246, 0.08), transparent 50%),
+    #030712;
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  border: 2px solid #030712;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* Glow Pulse Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Glassmorphism Presets */
+.glass-panel {
+  background: rgba(17, 24, 39, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-modal {
+  background: rgba(10, 15, 30, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.glass-dropdown {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Selection highlight color */
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: #ffffff;
+}
+

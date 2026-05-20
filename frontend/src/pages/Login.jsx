@@ -70,7 +70,7 @@ function Login({ trigger, isOpen: controlledIsOpen, onClose }) {
                 ) : (
                     <button
                         onClick={() => setIsOpen(true)}
-                        className="mt-3 inline-flex items-center gap-2 rounded-lg bg-indigo-500/10 px-4 py-2 text-sm font-semibold text-indigo-400 transition hover:bg-indigo-500/20 border border-indigo-500/20"
+                        className="mt-3 inline-flex items-center gap-2 rounded-xl bg-indigo-500/10 px-4 py-2 text-sm font-semibold text-indigo-400 transition hover:bg-indigo-500/20 border border-indigo-500/20 cursor-pointer"
                     >
                         <LogIn size={16} />
                         Login
@@ -79,63 +79,77 @@ function Login({ trigger, isOpen: controlledIsOpen, onClose }) {
             )}
 
             {isModalOpen && createPortal(
-                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-                    <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-slate-900 p-6 shadow-2xl text-slate-100">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md p-4">
+                    <div className="relative w-full max-w-md rounded-2xl glass-modal p-6 text-zinc-100 shadow-2xl overflow-hidden">
+                        {/* Ambient glowing auroras */}
+                        <div className="absolute -top-12 -left-12 h-32 w-32 rounded-full bg-indigo-500/10 blur-2xl -z-10 animate-pulse" />
+                        <div className="absolute -bottom-12 -right-12 h-32 w-32 rounded-full bg-cyan-500/10 blur-2xl -z-10 animate-pulse" />
+
                         <button
                             onClick={handleClose}
-                            className="absolute right-4 top-4 rounded-full p-1 text-slate-400 hover:bg-white/10 hover:text-white transition"
+                            className="absolute right-4 top-4 rounded-xl p-1.5 text-zinc-400 hover:bg-white/5 hover:text-white transition duration-150 cursor-pointer"
                         >
-                            <X size={20} />
+                            <X size={18} />
                         </button>
 
                         <div className="mb-6">
-                            <h2 className="text-xl font-semibold flex items-center gap-2">
-                                <LogIn className="text-indigo-400" size={24} />
+                            <h2 className="text-xl font-bold flex items-center gap-2.5 text-white">
+                                <div className="rounded-lg bg-indigo-500/10 p-2 text-indigo-400 border border-indigo-500/20">
+                                    <LogIn size={18} />
+                                </div>
                                 Welcome Back
                             </h2>
-                            <p className="text-sm text-slate-400 mt-1">Log in to manage your expenses</p>
+                            <p className="text-xs text-zinc-400 mt-1.5">Log in to manage and review your expenses.</p>
                         </div>
 
                         {message && (
-                            <div className={`mb-4 rounded-lg p-3 text-sm ${message.type === 'success' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
+                            <div className={`mb-4 rounded-xl p-3 text-xs font-semibold border ${
+                                message.type === 'success' 
+                                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' 
+                                    : 'bg-rose-500/10 text-rose-400 border-rose-500/20'
+                            }`}>
                                 {message.text}
                             </div>
                         )}
 
                         <form onSubmit={handleSubmit} className="space-y-4">
-                            <label className="block text-sm text-slate-300">
-                                Email
+                            <div className="block">
+                                <label className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                                    Email Address
+                                </label>
                                 <input
                                     type="email"
                                     name="email"
                                     placeholder="john@example.com"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="mt-2 w-full rounded-lg border border-white/15 bg-slate-800/80 px-3 py-2 text-sm text-white outline-none transition focus:border-indigo-400 placeholder:text-slate-500"
+                                    className="mt-2 w-full rounded-xl border border-white/10 bg-zinc-950/40 px-3.5 py-2.5 text-sm text-white outline-none transition duration-200 placeholder:text-zinc-500 focus:border-indigo-500 focus:bg-zinc-950/80 focus:ring-2 focus:ring-indigo-500/10"
                                     required
                                 />
-                            </label>
+                            </div>
 
-                            <label className="block text-sm text-slate-300">
-                                Password
+                            <div className="block">
+                                <label className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                                    Password
+                                </label>
                                 <input
                                     type="password"
                                     name="password"
                                     placeholder="••••••••"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className="mt-2 w-full rounded-lg border border-white/15 bg-slate-800/80 px-3 py-2 text-sm text-white outline-none transition focus:border-indigo-400 placeholder:text-slate-500"
+                                    className="mt-2 w-full rounded-xl border border-white/10 bg-zinc-950/40 px-3.5 py-2.5 text-sm text-white outline-none transition duration-200 placeholder:text-zinc-500 focus:border-indigo-500 focus:bg-zinc-950/80 focus:ring-2 focus:ring-indigo-500/10"
                                     required
                                 />
-                            </label>
+                            </div>
 
-                            <div className="pt-2">
+                            <div className="pt-3">
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-500 px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-indigo-400 disabled:opacity-70"
+                                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/15 transition-all duration-300 hover:scale-[1.01] hover:shadow-indigo-500/20 active:scale-[0.99] disabled:opacity-75 cursor-pointer"
                                 >
-                                    {loading ? "Logging in..." : "Login"}
+                                    {loading ? "Authenticating..." : "Login"}
                                 </button>
                             </div>
                         </form>

@@ -41,7 +41,7 @@ function Profile({ trigger, isOpen: controlledIsOpen, onClose }) {
                 ) : (
                     <button
                         onClick={() => setIsOpen(true)}
-                        className="mt-3 inline-flex items-center gap-2 rounded-lg bg-indigo-500/10 px-4 py-2 text-sm font-semibold text-indigo-400 transition hover:bg-indigo-500/20 border border-indigo-500/20"
+                        className="mt-3 inline-flex items-center gap-2 rounded-xl bg-indigo-500/10 px-4 py-2 text-sm font-semibold text-indigo-400 transition hover:bg-indigo-500/20 border border-indigo-500/20 cursor-pointer"
                     >
                         <User size={16} />
                         Profile
@@ -50,45 +50,50 @@ function Profile({ trigger, isOpen: controlledIsOpen, onClose }) {
             )}
 
             {isModalOpen && createPortal(
-                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-                    <div className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-slate-900 p-6 shadow-2xl text-slate-100">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md p-4">
+                    <div className="relative w-full max-w-sm rounded-2xl glass-modal p-6 text-zinc-100 shadow-2xl overflow-hidden">
+                        {/* Ambient glowing layers */}
+                        <div className="absolute -top-12 -left-12 h-32 w-32 rounded-full bg-indigo-500/10 blur-2xl -z-10 animate-pulse" />
+                        <div className="absolute -bottom-12 -right-12 h-32 w-32 rounded-full bg-cyan-500/10 blur-2xl -z-10 animate-pulse" />
+
                         <button
                             onClick={handleClose}
-                            className="absolute right-4 top-4 rounded-full p-1 text-slate-400 hover:bg-white/10 hover:text-white transition"
+                            className="absolute right-4 top-4 rounded-xl p-1.5 text-zinc-400 hover:bg-white/5 hover:text-white transition duration-150 cursor-pointer"
                         >
-                            <X size={20} />
+                            <X size={18} />
                         </button>
 
                         <div className="mb-6 flex flex-col items-center">
-                            <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-indigo-500/20 text-3xl font-bold text-indigo-400 border border-indigo-500/30 shadow-lg shadow-indigo-500/20">
+                            <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-tr from-indigo-500 to-cyan-500 text-3xl font-bold text-white border border-white/10 shadow-lg shadow-indigo-500/20">
                                 {user ? (user.username || user.name || 'U').charAt(0).toUpperCase() : <User size={40} />}
                             </div>
-                            <h2 className="text-xl font-semibold">User Profile</h2>
+                            <h2 className="text-xl font-bold text-white">User Profile</h2>
+                            <p className="text-xs text-zinc-400 mt-1">Manage cloud-linked credential scopes.</p>
                         </div>
 
                         {user ? (
                             <div className="space-y-4">
-                                <div className="rounded-xl border border-white/5 bg-slate-800/50 p-4">
-                                    <div className="flex items-center gap-3 text-slate-300 mb-1">
+                                <div className="rounded-xl border border-white/5 bg-zinc-950/40 p-4">
+                                    <div className="flex items-center gap-3 text-zinc-300 mb-1">
                                         <User size={16} className="text-cyan-400" />
-                                        <span className="text-xs uppercase tracking-wider text-slate-500">Username</span>
+                                        <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Username</span>
                                     </div>
-                                    <p className="text-sm font-medium pl-7">{user.username || user.name}</p>
+                                    <p className="text-sm font-semibold pl-7 text-white">{user.username || user.name}</p>
                                 </div>
-                                <div className="rounded-xl border border-white/5 bg-slate-800/50 p-4">
-                                    <div className="flex items-center gap-3 text-slate-300 mb-1">
+                                <div className="rounded-xl border border-white/5 bg-zinc-950/40 p-4">
+                                    <div className="flex items-center gap-3 text-zinc-300 mb-1">
                                         <Mail size={16} className="text-cyan-400" />
-                                        <span className="text-xs uppercase tracking-wider text-slate-500">Email Address</span>
+                                        <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Email Address</span>
                                     </div>
-                                    <p className="text-sm font-medium pl-7">{user.email}</p>
+                                    <p className="text-sm font-semibold pl-7 text-white">{user.email}</p>
                                 </div>
                             </div>
                         ) : (
                             <div className="flex flex-col items-center justify-center py-6 text-center">
-                                <p className="text-sm text-slate-400 mb-4">You are not logged in.</p>
+                                <p className="text-sm text-zinc-400 mb-4">You are not logged in.</p>
                                 <button
                                     onClick={handleClose}
-                                    className="rounded-lg bg-indigo-500 px-6 py-2 text-sm font-semibold text-slate-950 transition hover:bg-indigo-400"
+                                    className="rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 active:scale-[0.99] cursor-pointer"
                                 >
                                     Close
                                 </button>
